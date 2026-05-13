@@ -1,0 +1,1783 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Season 2026 · Run Coach</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="theme-color" content="#0a0908">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Run Coach">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Geist:wght@300..700&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0908;
+    --ink-2: #110f0c;
+    --ink-3: #181513;
+    --ink-4: #221d19;
+    --rule: #2a2520;
+    --rule-2: #3a342d;
+    --paper: #f4ede0;
+    --paper-2: #c9c0b1;
+    --paper-3: #968d80;
+    --paper-4: #6a6258;
+    --heat: #ff5b1f;
+    --heat-2: #ff8a4d;
+    --heat-deep: #b53b16;
+    --blood: #8a1f15;
+    --lactate: #7fa8b8;
+    --moss: #88896a;
+    --gold: #c9a960;
+    --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: "Geist", -apple-system, "Helvetica Neue", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18, 0 0 0 0 0.16, 0 0 0 0 0.13, 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -10%;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(60% 50% at 75% 0%, rgba(255, 91, 31, 0.06), transparent 60%);
+  }
+
+  ::selection { background: var(--heat); color: var(--ink); }
+
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 36px; }
+  @media (max-width: 720px) { .wrap { padding: 0 18px; } }
+
+  /* ────── TOPBAR ────── */
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    background: rgba(10, 9, 8, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .topbar .left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--paper);
+  }
+  .monogram {
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--heat);
+    color: var(--heat);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    font-weight: 500;
+  }
+  .topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    color: var(--paper-3);
+    font-size: 10px;
+  }
+  .topbar .right strong { color: var(--paper); font-weight: 400; }
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--heat);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 91, 31, 0.6); }
+    50% { box-shadow: 0 0 0 5px rgba(255, 91, 31, 0); }
+  }
+
+  /* ────── COMPACT HERO ────── */
+  .hero {
+    padding: 36px 0 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 56px;
+    align-items: end;
+  }
+  @media (max-width: 920px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+  }
+
+  .hero-target {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-target .lab {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--paper-4);
+  }
+  .hero-target .time {
+    font-family: var(--serif);
+    font-weight: 350;
+    font-size: clamp(56px, 8vw, 96px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    font-variation-settings: "opsz" 100, "SOFT" 0;
+  }
+  .hero-target .time em {
+    font-style: italic;
+    color: var(--heat);
+    font-variation-settings: "opsz" 100, "SOFT" 100, "WONK" 1;
+  }
+  .hero-target .ctx {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--paper-3);
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+  }
+  .hero-target .ctx span { color: var(--paper); }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 24px;
+    border-left: 1px solid var(--rule);
+    min-width: 100px;
+  }
+  @media (max-width: 920px) {
+    .hero-stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+  }
+  .hero-stat .lab {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--paper-4);
+  }
+  .hero-stat .val {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--paper);
+    font-variation-settings: "opsz" 60;
+  }
+  .hero-stat .val em {
+    font-style: italic;
+    color: var(--heat);
+    font-variation-settings: "opsz" 60, "SOFT" 100, "WONK" 1;
+  }
+  .hero-stat .sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ────── TABS ────── */
+  .tabs-bar {
+    position: sticky;
+    top: 46px;
+    background: rgba(10, 9, 8, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 90;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tabs {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: 18px 0;
+    margin-right: 36px;
+    color: var(--paper-3);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    position: relative;
+  }
+  .tab:hover { color: var(--paper); }
+  .tab.active {
+    color: var(--heat);
+    border-bottom-color: var(--heat);
+  }
+  .tab .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: inherit;
+    margin-right: 8px;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  /* ────── PANELS ────── */
+  .panel {
+    display: none;
+    padding: 56px 0 96px;
+    animation: fade-in 0.4s ease;
+  }
+  .panel.active { display: block; }
+  @keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  .panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .panel-head h1 {
+    font-family: var(--serif);
+    font-weight: 350;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    font-variation-settings: "opsz" 80, "SOFT" 20;
+  }
+  .panel-head h1 em {
+    font-style: italic;
+    color: var(--heat);
+    font-variation-settings: "opsz" 80, "SOFT" 100, "WONK" 1;
+  }
+  .panel-head .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-3);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .panel-head .meta strong { color: var(--paper); font-weight: 400; }
+
+  /* ────── PANEL: THIS WEEK ────── */
+  .week-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 980px) { .week-layout { grid-template-columns: 1fr; } }
+
+  /* day list */
+  .days {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--rule);
+  }
+  .day-row {
+    display: grid;
+    grid-template-columns: 44px 86px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.25s;
+  }
+  .day-row:hover { background: rgba(255, 237, 224, 0.025); }
+  .day-row.rest { opacity: 0.5; }
+  .day-row.featured {
+    margin: 0 -16px;
+    padding: 18px 16px;
+    border-left: 2px solid var(--heat);
+    background: rgba(255, 91, 31, 0.05);
+    border-bottom-color: rgba(255, 91, 31, 0.2);
+  }
+  .day-row.featured-2 {
+    margin: 0 -16px;
+    padding: 18px 16px;
+    border-left: 2px solid var(--lactate);
+    background: rgba(127, 168, 184, 0.05);
+    border-bottom-color: rgba(127, 168, 184, 0.2);
+  }
+  .day-row.featured-3 {
+    margin: 0 -16px;
+    padding: 18px 16px;
+    border-left: 2px solid var(--moss);
+    background: rgba(136, 137, 106, 0.05);
+    border-bottom-color: rgba(136, 137, 106, 0.2);
+  }
+  .day-row .dow {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--paper-3);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .day-row.featured .dow { color: var(--heat); }
+  .day-row.featured-2 .dow { color: var(--lactate); }
+  .day-row.featured-3 .dow { color: var(--moss); }
+  .day-row .date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--paper-3);
+    letter-spacing: 0.1em;
+  }
+  .day-row .desc {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--paper);
+    line-height: 1.4;
+  }
+  .day-row.featured .desc, .day-row.featured-2 .desc, .day-row.featured-3 .desc { font-weight: 500; }
+  .day-row .desc .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+  .day-row .km {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 350;
+    color: var(--paper);
+    text-align: right;
+    line-height: 0.9;
+    font-variation-settings: "opsz" 60;
+  }
+  .day-row .km small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--paper-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .day-row.rest .km { font-style: italic; color: var(--paper-4); }
+
+  .week-total {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid var(--paper);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .week-total .lab {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper-3);
+  }
+  .week-total .val {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--paper);
+    font-variation-settings: "opsz" 80;
+  }
+  .week-total .val em {
+    font-style: italic;
+    color: var(--heat);
+    font-size: 14px;
+    margin-left: 6px;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  /* feature card (Tuesday session + strength) */
+  .feature-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .fcard {
+    border: 1px solid var(--rule);
+    background: var(--ink-2);
+    padding: 28px;
+    position: relative;
+  }
+  .fcard.heat {
+    background: linear-gradient(180deg, rgba(255, 91, 31, 0.06), transparent);
+  }
+  .fcard.heat::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--heat), transparent);
+  }
+  .fcard.lact {
+    background: linear-gradient(180deg, rgba(127, 168, 184, 0.05), transparent);
+  }
+  .fcard.lact::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--lactate), transparent);
+  }
+  .fcard.moss {
+    background: linear-gradient(180deg, rgba(136, 137, 106, 0.05), transparent);
+  }
+  .fcard.moss::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--moss), transparent);
+  }
+  .fcard .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--heat);
+    margin-bottom: 6px;
+  }
+  .fcard.lact .tag { color: var(--lactate); }
+  .fcard.moss .tag { color: var(--moss); }
+  .fcard h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 6px;
+    font-variation-settings: "opsz" 80;
+  }
+  .fcard .subt {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--paper-2);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    margin-bottom: 18px;
+  }
+
+  .main-set {
+    background: var(--ink);
+    padding: 14px 16px;
+    border: 1px solid var(--rule-2);
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .main-set::before, .main-set::after {
+    content: "";
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--heat);
+    background: var(--ink);
+    transform: rotate(45deg);
+  }
+  .fcard.lact .main-set::before, .fcard.lact .main-set::after { border-color: var(--lactate); }
+  .main-set::before { top: -4px; left: -4px; }
+  .main-set::after { bottom: -4px; right: -4px; }
+  .main-set .lbl {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--paper-4);
+    margin-bottom: 4px;
+  }
+  .main-set .formula {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--paper);
+    font-variation-settings: "opsz" 80;
+    line-height: 1.1;
+  }
+  .main-set .formula em {
+    font-style: italic;
+    color: var(--heat);
+    font-variation-settings: "opsz" 80, "SOFT" 100, "WONK" 1;
+  }
+  .main-set .formula .x {
+    color: var(--heat);
+    font-family: var(--mono);
+    font-style: normal;
+    font-weight: 300;
+    margin: 0 3px;
+  }
+
+  .lact-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .lact-table th {
+    text-align: left;
+    color: var(--paper-4);
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lact-table td {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--paper-2);
+  }
+  .lact-table td:first-child {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--lactate);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    width: 110px;
+  }
+  .lact-table .pace-up { color: var(--heat-2); }
+  .lact-table .pace-down { color: var(--lactate); }
+  .lact-table .pace-hold { color: var(--paper); }
+
+  .callout {
+    margin-top: 16px;
+    padding: 10px 12px;
+    border-left: 2px solid var(--blood);
+    background: rgba(138, 31, 21, 0.06);
+    font-size: 12px;
+    color: var(--paper-2);
+    line-height: 1.5;
+  }
+  .callout strong { color: var(--paper); }
+
+  /* strength exercise list */
+  .ex-list {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--paper);
+    margin-top: 4px;
+  }
+  .ex-list .e {
+    border-top: 1px solid var(--rule);
+    padding-top: 7px;
+    display: contents;
+  }
+  .ex-list .e > * { border-top: 1px solid var(--rule); padding: 7px 0; }
+  .ex-list .e:first-child > * { border-top: 0; padding-top: 0; }
+  .ex-list .ename {
+    color: var(--paper);
+  }
+  .ex-list .ename em {
+    font-style: italic;
+    font-family: var(--serif);
+    color: var(--heat);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    margin-right: 6px;
+  }
+  .ex-list .esets {
+    color: var(--paper-3);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .rationale {
+    margin-top: 18px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--paper-2);
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule-2);
+  }
+
+  /* ────── PANEL: CALENDAR ────── */
+  .cal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--rule);
+  }
+  .cal-row {
+    display: grid;
+    grid-template-columns: 96px 60px 1fr 240px 100px;
+    gap: 24px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    transition: background 0.25s;
+  }
+  .cal-row:hover { background: rgba(255, 237, 224, 0.025); }
+  .cal-row.major {
+    padding: 24px 0;
+    background: linear-gradient(90deg, rgba(255, 91, 31, 0.04), transparent 70%);
+  }
+  .cal-row.target {
+    background: linear-gradient(90deg, rgba(255, 91, 31, 0.12), rgba(255, 91, 31, 0.02) 100%);
+    border-top: 2px solid var(--heat);
+    border-bottom: 2px solid var(--heat);
+    padding: 32px 0;
+  }
+  @media (max-width: 920px) {
+    .cal-row {
+      grid-template-columns: 70px 1fr;
+      grid-template-areas: "date type" "date name" "date target" "date wk";
+      gap: 8px 16px;
+    }
+    .cal-row .cdate { grid-area: date; }
+    .cal-row .ctype { grid-area: type; }
+    .cal-row .cname { grid-area: name; }
+    .cal-row .ctarget { grid-area: target; text-align: left; }
+    .cal-row .cwk { grid-area: wk; justify-self: end; }
+  }
+  .cdate {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .cdate .y {
+    color: var(--paper-4);
+    font-size: 10px;
+    display: block;
+    margin-top: 2px;
+    letter-spacing: 0.16em;
+  }
+  .cwk {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--paper-3);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .ctype {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .ctype .badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid var(--rule-2);
+    color: var(--paper-2);
+  }
+  .ctype.race .badge {
+    border-color: var(--heat);
+    color: var(--heat);
+    background: rgba(255, 91, 31, 0.05);
+  }
+  .ctype.lst .badge {
+    border-color: var(--lactate);
+    color: var(--lactate);
+  }
+  .ctype.target .badge {
+    background: var(--heat);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .cname {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 50;
+  }
+  .cal-row.target .cname { font-size: 26px; font-weight: 500; }
+  .cname .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+  .ctarget {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--paper);
+    text-align: right;
+  }
+  .ctarget em { color: var(--heat); font-style: normal; }
+  .ctarget .small {
+    font-size: 10px;
+    color: var(--paper-3);
+    display: block;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  @media (max-width: 920px) { .ctarget { text-align: left; } }
+
+  /* ────── PANEL: PERIODIZATION ────── */
+  .phases-timeline {
+    margin-bottom: 56px;
+  }
+  .month-axis {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border-bottom: 1px solid var(--rule);
+  }
+  .month-axis .m {
+    padding: 6px 8px;
+    border-left: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--paper-3);
+    text-transform: uppercase;
+  }
+  .month-axis .m:first-child { border-left: 0; }
+
+  .phases-row {
+    display: flex;
+    height: 86px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+  .phase-block {
+    position: relative;
+    padding: 10px 12px;
+    overflow: hidden;
+    color: var(--ink);
+  }
+  .phase-block::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--phase-color);
+    opacity: 0.88;
+    z-index: 0;
+  }
+  .phase-block + .phase-block { border-left: 1px solid var(--ink); }
+  .phase-block .ix {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+  }
+  .phase-block .name {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    margin-top: 6px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  .phase-block .vol {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(10, 9, 8, 0.65);
+    position: relative;
+    z-index: 1;
+    margin-top: 6px;
+  }
+
+  .here-marker {
+    position: absolute;
+    top: -26px;
+    bottom: -26px;
+    width: 2px;
+    background: var(--paper);
+    z-index: 5;
+    pointer-events: none;
+  }
+  .here-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px; height: 16px;
+    border: 2px solid var(--paper);
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  .here-marker::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px; height: 6px;
+    background: var(--paper);
+    border-radius: 50%;
+  }
+  .here-label {
+    position: absolute;
+    top: -46px;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--paper);
+    white-space: nowrap;
+    z-index: 6;
+  }
+  .here-label::before { content: "✦ "; color: var(--heat); }
+
+  .ticks-row {
+    display: flex;
+    height: 24px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .tick {
+    flex: 1;
+    border-left: 1px solid var(--ink-3);
+    position: relative;
+  }
+  .tick:first-child { border-left: 0; }
+  .tick.tick-major::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 2px;
+    background: var(--heat);
+  }
+  .tick .label {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--paper-3);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .phase-cards {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 920px) { .phase-cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .phase-cards { grid-template-columns: 1fr; } }
+  .phase-card {
+    padding-top: 14px;
+    border-top: 2px solid var(--phase-color);
+  }
+  .phase-card .ph-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--phase-color);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .phase-card .ph-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 6px 0 14px;
+    font-variation-settings: "opsz" 50;
+  }
+  .phase-card dl {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--paper-3);
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 6px 12px;
+  }
+  .phase-card dt {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--paper-4);
+    font-size: 9px;
+  }
+  .phase-card dd { color: var(--paper-2); }
+  .phase-card dd strong { color: var(--paper); font-weight: 500; }
+
+  .principles-grid {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 920px) { .principles-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .principles-grid { grid-template-columns: 1fr; } }
+  .principle {
+    padding-top: 14px;
+    border-top: 1px solid var(--paper);
+  }
+  .principle .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--heat);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .principle h4 {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    margin: 4px 0 8px;
+    line-height: 1.2;
+    font-variation-settings: "opsz" 50;
+  }
+  .principle p {
+    font-size: 13px;
+    color: var(--paper-3);
+    line-height: 1.5;
+  }
+
+  /* ────── PANEL: VOLUME ────── */
+  .chart-wrap {
+    width: 100%;
+    height: 420px;
+    background: var(--ink-2);
+    border: 1px solid var(--rule);
+    padding: 32px 16px 64px 60px;
+    position: relative;
+  }
+  @media (max-width: 720px) { .chart-wrap { padding: 18px 8px 56px 44px; height: 340px; } }
+  .chart-wrap svg { width: 100%; height: 100%; overflow: visible; }
+  .chart-yaxis {
+    position: absolute;
+    left: 0;
+    top: 32px;
+    bottom: 44px;
+    width: 50px;
+    pointer-events: none;
+  }
+  .chart-yaxis .yt {
+    position: absolute;
+    left: 8px;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-4);
+    letter-spacing: 0.08em;
+  }
+
+  .chart-legend {
+    margin-top: 24px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .chart-legend .lk { display: inline-flex; align-items: center; gap: 8px; }
+  .chart-legend .sw {
+    width: 14px; height: 14px;
+  }
+
+  .vol-context {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 920px) { .vol-context { grid-template-columns: 1fr 1fr; } }
+  .vol-context .item {
+    border-left: 1px solid var(--rule);
+    padding-left: 18px;
+  }
+  .vol-context .item:first-child { border-left: 0; padding-left: 0; }
+  .vol-context .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper-4);
+    margin-bottom: 6px;
+  }
+  .vol-context .v {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1;
+    font-variation-settings: "opsz" 60;
+  }
+  .vol-context .v em {
+    font-style: italic;
+    color: var(--heat);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .vol-context .v small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--paper-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* ────── PANEL: ZONES ────── */
+  .zones-wrap {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 920px) { .zones-wrap { grid-template-columns: 1fr; } }
+
+  .zones-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid var(--paper);
+  }
+  .zones-table th {
+    text-align: left;
+    padding: 12px 16px 12px 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--paper-4);
+    border-bottom: 1px solid var(--rule);
+    font-weight: 400;
+  }
+  .zones-table td {
+    padding: 18px 16px 18px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .zones-table .zone-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--paper);
+    font-variation-settings: "opsz" 50;
+  }
+  .zones-table .zone-name small {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--paper-4);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .zones-table .data {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--paper);
+  }
+  .zones-table .data .unit {
+    font-size: 9px;
+    color: var(--paper-4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 3px;
+  }
+  .zones-table .purpose {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--paper-2);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .zones-table tr.subt { background: linear-gradient(90deg, rgba(255, 91, 31, 0.05), transparent); }
+  .zones-table tr.subt .zone-name { color: var(--heat); }
+
+  .hrmax-card {
+    padding: 24px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .hrmax-card h3 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--paper-3);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .hrmax-card .big {
+    font-family: var(--serif);
+    font-size: 76px;
+    font-weight: 350;
+    line-height: 0.9;
+    color: var(--paper);
+    font-variation-settings: "opsz" 100;
+    margin-bottom: 6px;
+  }
+  .hrmax-card .big em {
+    font-style: italic;
+    color: var(--heat);
+    font-variation-settings: "opsz" 100, "SOFT" 100, "WONK" 1;
+  }
+  .hrmax-card .note {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--paper-3);
+    line-height: 1.5;
+    margin-top: 14px;
+    border-top: 1px dashed var(--rule-2);
+    padding-top: 14px;
+  }
+  .hrmax-card .note em { color: var(--paper); font-style: normal; }
+
+  /* footer */
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 32px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--paper-4);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+  footer em {
+    color: var(--paper-2);
+    font-style: italic;
+    font-family: var(--serif);
+    letter-spacing: 0;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    text-transform: none;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="left">
+        <span class="monogram">Y</span>
+        <strong>YEW WEE · RUN COACH</strong>
+        <span style="color: var(--paper-4)">— SEASON 2026</span>
+      </div>
+      <div class="right">
+        <span><span class="pulse-dot"></span><strong>W20</strong> · IN PROGRESS</span>
+        <span>UPDATED <strong>11 MAY 2026</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPACT HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-target">
+          <span class="lab">Season target · 10 km · 5 December</span>
+          <span class="time">37<em>:</em>30</span>
+          <span class="ctx">Stretch <span>sub-37:00</span> · Floor <span>sub-38:00</span> · Old PB <span>39:00 (2018)</span></span>
+        </div>
+        <div class="hero-stat">
+          <span class="lab">Days to race</span>
+          <span class="val" id="countdown">208</span>
+          <span class="sub">From 11 May 2026</span>
+        </div>
+        <div class="hero-stat">
+          <span class="lab">Current phase</span>
+          <span class="val">I<em>.</em></span>
+          <span class="sub">Threshold reintroduction</span>
+        </div>
+        <div class="hero-stat">
+          <span class="lab">Hamstring</span>
+          <span class="val">1<em>/10</em></span>
+          <span class="sub">Wed AM · recovered from Tue's 2–3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <div class="wrap">
+      <div class="tabs">
+        <button class="tab active" data-tab="week"><span class="num">i.</span>This Week</button>
+        <button class="tab" data-tab="calendar"><span class="num">ii.</span>Calendar</button>
+        <button class="tab" data-tab="periodization"><span class="num">iii.</span>Periodization</button>
+        <button class="tab" data-tab="volume"><span class="num">iv.</span>Volume</button>
+        <button class="tab" data-tab="zones"><span class="num">v.</span>Zones</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: THIS WEEK -->
+  <div class="panel active" data-panel="week">
+    <div class="wrap">
+      <div class="panel-head">
+        <h1>Week <em>20</em> · 11 – 17 May</h1>
+        <div class="meta">85 km · 6 sessions · 1 quality · 2 strength<br><strong>Threshold reintroduction · Block I, Week 1 of 6</strong></div>
+      </div>
+
+      <div class="week-layout">
+        <div>
+          <div class="days">
+            <div class="day-row">
+              <span class="dow">Mon</span>
+              <span class="date">11 May</span>
+              <span class="desc">Easy + 4×80m strides<span class="meta">NB Rebel · HR ≤ 154 · Standard easy</span></span>
+              <span class="km">12<small>km</small></span>
+            </div>
+            <div class="day-row featured">
+              <span class="dow">Tue</span>
+              <span class="date">12 May</span>
+              <span class="desc">Sub-threshold #1 · DONE<span class="meta">5 reps · 4:17/km avg · HR max 168 · hamstring 2–3/10</span></span>
+              <span class="km">13<small>km · ✓</small></span>
+            </div>
+            <div class="day-row featured-2">
+              <span class="dow">Wed</span>
+              <span class="date">13 May</span>
+              <span class="desc">Easy (recovery) + Strength A · heavy<span class="meta">Superblast 2 (A) · HR ≤ 145 · Strength PM 45 min</span></span>
+              <span class="km">14<small>km</small></span>
+            </div>
+            <div class="day-row">
+              <span class="dow">Thu</span>
+              <span class="date">14 May</span>
+              <span class="desc">Easy + 6×80m strides<span class="meta">NB Rebel · HR ≤ 154 · Standard easy</span></span>
+              <span class="km">12<small>km</small></span>
+            </div>
+            <div class="day-row rest">
+              <span class="dow">Fri</span>
+              <span class="date">15 May</span>
+              <span class="desc">Rest day<span class="meta">Mobility · walking OK</span></span>
+              <span class="km">—</span>
+            </div>
+            <div class="day-row">
+              <span class="dow">Sat</span>
+              <span class="date">16 May</span>
+              <span class="desc">Long run · controlled<span class="meta">Superblast 2 (B) · HR ≤ 158</span></span>
+              <span class="km">22<small>km</small></span>
+            </div>
+            <div class="day-row featured-3">
+              <span class="dow">Sun</span>
+              <span class="date">17 May</span>
+              <span class="desc">Recovery + Strength B · light<span class="meta">Cloudmonster 3 · HR ≤ 145 · Strength PM 45 min</span></span>
+              <span class="km">12<small>km</small></span>
+            </div>
+          </div>
+          <div class="week-total">
+            <span class="lab">Weekly total</span>
+            <span class="val">85<em>km</em></span>
+          </div>
+        </div>
+
+        <div class="feature-cards">
+
+          <!-- TUESDAY — DONE -->
+          <div class="fcard heat">
+            <div class="tag">Tuesday · Quality day · 12 May · COMPLETED</div>
+            <h3>Sub-Threshold #1</h3>
+            <p class="subt">Actual vs prescribed — and what we learned.</p>
+
+            <div class="main-set">
+              <div class="lbl">Result</div>
+              <div class="formula"><em>5</em> <span class="x">×</span> 6 min @ <em>4:17</em>/km avg · HR max 168</div>
+            </div>
+
+            <table class="lact-table">
+              <thead><tr><th>Metric</th><th>Prescribed</th><th>Actual</th></tr></thead>
+              <tbody>
+                <tr><td>Rep pace</td><td>4:25/km</td><td class="pace-up">4:14 → 4:21 (avg 4:17)</td></tr>
+                <tr><td>HR max</td><td>≤ 178</td><td class="pace-hold">168 (85% HRmax)</td></tr>
+                <tr><td>HR drift</td><td>&lt; 5%</td><td class="pace-hold">&lt; 2% (clean)</td></tr>
+                <tr><td>Pace spread</td><td>tight</td><td class="pace-hold">±4 sec/km — disciplined</td></tr>
+                <tr><td>Hamstring</td><td>0</td><td class="pace-down">2–3/10 during reps</td></tr>
+                <tr><td>Lactate</td><td>2.5–3.5</td><td class="pace-down">Unreliable · 6-mo expired strips</td></tr>
+              </tbody>
+            </table>
+
+            <div class="callout">
+              <strong>Key takeaways:</strong> HR + pace data validates upper sub-T effort. Lactate unreliable; dropped for routine sub-T until June LST with fresh strips. Hamstring 2–3/10 = the load ceiling — must produce 0–1 next session. Full log: <code>logs/sessions/2026-05-12-sub-threshold-1.md</code>
+            </div>
+          </div>
+
+          <!-- WEDNESDAY STRENGTH — REVISED for L-side asymmetry -->
+          <div class="fcard lact">
+            <div class="tag">Wednesday PM · Strength A · 45 min · REVISED</div>
+            <h3>Unilateral posterior · target left side</h3>
+            <p class="subt">Asymmetric weakness confirmed — going unilateral.</p>
+
+            <div class="ex-list">
+              <div class="e"><span class="ename"><em>1.</em>Single-leg hamstring bridge · slow lower</span><span class="esets">3 × 8 each · 4-sec descent</span></div>
+              <div class="e"><span class="ename"><em>2.</em>Single-leg RDL · load by L capacity</span><span class="esets">3 × 8 each · DB</span></div>
+              <div class="e"><span class="ename"><em>3.</em>Hip thrust · 3-sec descent</span><span class="esets">3 × 10 · BB</span></div>
+              <div class="e"><span class="ename"><em>4.</em>Bulgarian split squat</span><span class="esets">3 × 8 each · DB</span></div>
+              <div class="e"><span class="ename"><em>5.</em>Copenhagen plank</span><span class="esets">3 × 20–30s each</span></div>
+              <div class="e"><span class="ename"><em>6.</em>Pallof press</span><span class="esets">2 × 10 each · band</span></div>
+            </div>
+
+            <p class="rationale">Bilateral Nordic curl swapped out — left hamstring noticeably weaker than right on single-leg work. Bilateral lets right side compensate, leaving left under-dosed. Unilateral work targets each side independently. Log L vs R performance each session — closing the gap = tendon adapting.</p>
+          </div>
+
+          <!-- SUNDAY STRENGTH -->
+          <div class="fcard moss">
+            <div class="tag">Sunday PM · Strength B · 45 min</div>
+            <h3>Power &amp; maintenance · light</h3>
+            <p class="subt">Reactive strength + glute med + runner-maintenance gaps.</p>
+
+            <div class="ex-list">
+              <div class="e"><span class="ename"><em>1.</em>Pogo jumps</span><span class="esets">3 × 30s · stiffness</span></div>
+              <div class="e"><span class="ename"><em>2.</em>Lateral bound</span><span class="esets">3 × 6 each side</span></div>
+              <div class="e"><span class="ename"><em>3.</em>Single-leg calf raise</span><span class="esets">3 × 12 each</span></div>
+              <div class="e"><span class="ename"><em>4.</em>Step-up to high knee</span><span class="esets">3 × 8 each · DB</span></div>
+              <div class="e"><span class="ename"><em>5.</em>Side plank w/ hip abduction</span><span class="esets">3 × 8 each</span></div>
+              <div class="e"><span class="ename"><em>6.</em>Dead bug</span><span class="esets">2 × 10</span></div>
+              <div class="e"><span class="ename"><em>7.</em>Reverse hyper / back ext.</span><span class="esets">3 × 12</span></div>
+            </div>
+
+            <p class="rationale">Light intentionally — won't compound post-LR fatigue; clears the slate for Mon. Loaded eccentric work belongs Wed (Session A); this is power, stiffness, and stability.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: CALENDAR -->
+  <div class="panel" data-panel="calendar">
+    <div class="wrap">
+      <div class="panel-head">
+        <h1>Calendar · races, tests, <em>checkpoints</em>.</h1>
+        <div class="meta">14 events · 3 races · 3 self-administered lactate tests<br><strong>May → December · fresh strips required for LSTs</strong></div>
+      </div>
+      <div class="cal-grid" id="calendarGrid"></div>
+    </div>
+  </div>
+
+  <!-- PANEL: PERIODIZATION -->
+  <div class="panel" data-panel="periodization">
+    <div class="wrap">
+      <div class="panel-head">
+        <h1>Six phases · <em>thirty</em> weeks.</h1>
+        <div class="meta">May 11 → 5 December<br><strong>10k specific build</strong></div>
+      </div>
+
+      <div class="phases-timeline">
+        <div class="month-axis">
+          <div class="m">May</div><div class="m">Jun</div><div class="m">Jul</div><div class="m">Aug</div>
+          <div class="m">Sep</div><div class="m">Oct</div><div class="m">Nov</div><div class="m">Dec</div>
+        </div>
+        <div class="phases-row" id="phasesRow"></div>
+        <div class="ticks-row" id="ticksRow"></div>
+      </div>
+
+      <div class="phase-cards" id="phaseLegend"></div>
+
+      <div class="principles-grid">
+        <div class="principle"><span class="n">i.</span><h4>Race &amp; TT trump the plan.</h4><p>If actual fitness diverges &gt; 5% from expected, revise the trajectory.</p></div>
+        <div class="principle"><span class="n">ii.</span><h4>Hamstring trumps everything.</h4><p>Any flare — even 2/10 — drop intensity, hold volume, reassess.</p></div>
+        <div class="principle"><span class="n">iii.</span><h4>Don't chase missed sessions.</h4><p>Skip and continue. Compounded fatigue is how setbacks happen.</p></div>
+        <div class="principle"><span class="n">iv.</span><h4>The taper is sacred.</h4><p>Pre-race adrenaline overrides judgment. Especially when you feel airborne.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: VOLUME -->
+  <div class="panel" data-panel="volume">
+    <div class="wrap">
+      <div class="panel-head">
+        <h1>From comeback ramp to <em>120 km</em> peak.</h1>
+        <div class="meta">Nov 2025 → Dec 2026 · 58 weeks<br><strong>Capped low for 10k</strong></div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-yaxis" id="chartYaxis"></div>
+        <svg id="volumeChart" viewBox="0 0 1200 320" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="chart-legend">
+        <span class="lk"><span class="sw" style="background: var(--paper-4)"></span>Actual (past)</span>
+        <span class="lk"><span class="sw" style="background: var(--heat)"></span>Planned</span>
+        <span class="lk"><span class="sw" style="background: var(--paper)"></span>This week (W20)</span>
+        <span class="lk"><span class="sw" style="background: var(--blood)"></span>Setback (W08 gap · W15 flare)</span>
+      </div>
+
+      <div class="vol-context">
+        <div class="item"><div class="k">Comeback start</div><div class="v">16<em>km</em><small>W44 · Nov 2025</small></div></div>
+        <div class="item"><div class="k">Current</div><div class="v">80<em>km</em><small>W19 · last week</small></div></div>
+        <div class="item"><div class="k">Peak target</div><div class="v">120<em>km</em><small>W31 · early Aug</small></div></div>
+        <div class="item"><div class="k">Historical peak</div><div class="v">207<em>km</em><small>2020-W30 · pre-hiatus</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: ZONES -->
+  <div class="panel" data-panel="zones">
+    <div class="wrap">
+      <div class="panel-head">
+        <h1>Zones · provisional, pending <em>Tuesday</em>.</h1>
+        <div class="meta">Last updated 11 May<br><strong>Anchored on HR max 198 · age 35</strong></div>
+      </div>
+
+      <div class="zones-wrap">
+        <table class="zones-table">
+          <thead><tr><th>Zone</th><th>Pace</th><th>Heart rate</th><th>Lactate</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td class="zone-name">Z0 · Recovery<small>Post-quality / post-LR</small></td><td class="data">5:25–5:50<span class="unit">min/km</span></td><td class="data">≤ 145<span class="unit">73%</span></td><td class="data">&lt; 1.5<span class="unit">mmol/L</span></td><td class="purpose">Wed, Sun · run lazy.</td></tr>
+            <tr><td class="zone-name">Z1 · Easy<small>Standard / buffer days</small></td><td class="data">5:10–5:40<span class="unit">min/km</span></td><td class="data">≤ 154<span class="unit">78%</span></td><td class="data">&lt; 2.0<span class="unit">mmol/L</span></td><td class="purpose">Mon, Thu · 80% of mileage.</td></tr>
+            <tr><td class="zone-name">Z2 · Steady<small>Moderate long</small></td><td class="data">4:40–5:00<span class="unit">min/km</span></td><td class="data">≤ 166<span class="unit">84%</span></td><td class="data">2.0–2.5</td><td class="purpose">End-of-LR lift.</td></tr>
+            <tr class="subt"><td class="zone-name">Z3 · Sub-threshold<small>Tuesday target</small></td><td class="data">4:20–4:30<span class="unit">HR-anchored · no lactate</span></td><td class="data">166–178<span class="unit">84–90%</span></td><td class="data">n/a routine</td><td class="purpose">The Norwegian zone.</td></tr>
+            <tr><td class="zone-name">Z4 · Threshold<small>TBD by June LST</small></td><td class="data">~ 4:00–4:10<span class="unit">inference, not measured</span></td><td class="data">~ 182<span class="unit">92%</span></td><td class="data">3.5–5.0</td><td class="purpose">Race-pace ceiling.</td></tr>
+            <tr><td class="zone-name">Z5 · VO2<small>Not used yet</small></td><td class="data">&lt; 3:30<span class="unit">est.</span></td><td class="data">&gt; 188<span class="unit">95%</span></td><td class="data">&gt; 5.0</td><td class="purpose">November sharpening.</td></tr>
+          </tbody>
+        </table>
+
+        <aside class="hrmax-card">
+          <h3>HR maximum</h3>
+          <div class="big">1<em>98</em></div>
+          <div class="note">Validated against 2025 race effort. Tanaka gave 185 — 15 bpm low. 2017 peak of 206 was age 27 — accept the age decline. <em>Refine upward only if a real near-max effort registers higher.</em></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap" style="display: flex; justify-content: space-between; align-items: baseline; gap: 32px; flex-wrap: wrap;">
+      <span>Run Coach · <em>Yew Wee Chua</em> · Season 2026</span>
+      <span>Source <code>plans/2026_season_overview.md</code> · Local, no analytics</span>
+    </div>
+  </footer>
+
+<script>
+  // ────── tab switching ──────
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === btn));
+      document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.dataset.panel === id));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ────── countdown ──────
+  (function () {
+    const race = new Date('2026-12-05T07:00:00');
+    const now = new Date();
+    const days = Math.max(0, Math.ceil((race - now) / 86400000));
+    document.getElementById('countdown').textContent = days;
+  })();
+
+  // ────── phases ──────
+  const phases = [
+    { i: 'I',   name: 'Threshold reintroduction', short: 'Threshold reintro', weeks: 'W20–W25', dates: 'May 11 – Jun 21', w: 6, vol: '85 → 105 km', light: '#9a4a2a', quality: '1× sub-T → 2×' },
+    { i: 'II',  name: 'Norwegian + speed intro',  short: 'Norwegian',         weeks: 'W26–W29', dates: 'Jun 22 – Jul 19', w: 4, vol: '105–115 km', light: '#c8551e', quality: '2× sub-T + hill sprints' },
+    { i: 'III', name: 'Speed-endurance bridge',   short: 'Speed-endurance',   weeks: 'W30–W35', dates: 'Jul 20 – Aug 30', w: 6, vol: '110–120 km (peak)', light: '#ff5b1f', quality: '2× sub-T + 5k-pace reps' },
+    { i: 'IV',  name: '10k specific prep',        short: '10k specific',      weeks: 'W36–W42', dates: 'Aug 31 – Oct 18', w: 7, vol: '100–110 km',  light: '#ff7a3c', quality: '10k-pace + sub-T' },
+    { i: 'V',   name: '10k sharpening',           short: '10k sharpening',    weeks: 'W43–W47', dates: 'Oct 19 – Nov 22', w: 5, vol: '95–100 km',   light: '#ff9a5e', quality: '10k-pace + VO2' },
+    { i: 'VI',  name: 'Taper',                    short: 'Taper',             weeks: 'W48–W49', dates: 'Nov 23 – Dec 5',  w: 2, vol: '75 → 50 km',  light: '#ffb98a', quality: 'Short sharpener' }
+  ];
+
+  const totalWeeks = phases.reduce((a, p) => a + p.w, 0);
+
+  const phasesRow = document.getElementById('phasesRow');
+  if (phasesRow) {
+    phases.forEach(p => {
+      const block = document.createElement('div');
+      block.className = 'phase-block';
+      block.style.flex = p.w;
+      block.style.setProperty('--phase-color', p.light);
+      block.innerHTML =
+        '<span class="ix">' + p.i + '.</span>' +
+        '<div class="name">' + p.short + '</div>' +
+        '<div class="vol">' + p.vol.replace(' km', '') + ' · ' + p.w + ' wks</div>';
+      phasesRow.appendChild(block);
+    });
+    const pct = (0.5 / totalWeeks) * 100;
+    const here = document.createElement('div');
+    here.className = 'here-marker';
+    here.style.left = pct + '%';
+    const lbl = document.createElement('div');
+    lbl.className = 'here-label';
+    lbl.style.left = pct + '%';
+    lbl.textContent = 'You are here · W20';
+    phasesRow.appendChild(here);
+    phasesRow.appendChild(lbl);
+  }
+
+  const ticksRow = document.getElementById('ticksRow');
+  if (ticksRow) {
+    for (let i = 0; i < totalWeeks; i++) {
+      const t = document.createElement('div');
+      t.className = 'tick';
+      if (i % 4 === 0) {
+        t.classList.add('tick-major');
+        const lab = document.createElement('span');
+        lab.className = 'label';
+        lab.textContent = 'W' + (20 + i);
+        t.appendChild(lab);
+      }
+      ticksRow.appendChild(t);
+    }
+  }
+
+  const legend = document.getElementById('phaseLegend');
+  if (legend) {
+    phases.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'phase-card';
+      card.style.setProperty('--phase-color', p.light);
+      card.innerHTML =
+        '<div class="ph-num">Phase ' + p.i + '</div>' +
+        '<h3 class="ph-title">' + p.name + '</h3>' +
+        '<dl>' +
+        '<dt>Weeks</dt><dd><strong>' + p.weeks + '</strong></dd>' +
+        '<dt>Dates</dt><dd>' + p.dates + '</dd>' +
+        '<dt>Volume</dt><dd><strong>' + p.vol + '</strong></dd>' +
+        '<dt>Quality</dt><dd>' + p.quality + '</dd>' +
+        '</dl>';
+      legend.appendChild(card);
+    });
+  }
+
+  // ────── calendar ──────
+  const events = [
+    { date: 'May 12', y: '2026', wk: 'W20', type: 'SESS', name: 'Sub-threshold #1 — calibration', meta: '5 × 6 min', target: 'Lactate 2.5–3.5', pace: '@ ~4:25/km' },
+    { date: 'May 26', y: '2026', wk: 'W22', type: 'SESS', name: 'Sub-threshold #3', meta: '5 × 6 min', target: 'Pace bumping → 4:15', pace: '' },
+    { date: 'Jun 02', y: '2026', wk: 'W23', type: 'TT',   name: '3 km TT №1', meta: '3 km', target: 'sub-11:30', pace: '@ 3:50/km' },
+    { date: 'Jun 16', y: '2026', wk: 'W25', type: 'LST',  name: 'Lactate step test №1', meta: '6 × 4 min progressive', target: 'Find LT1 & LT2', pace: 'pace & HR' },
+    { date: 'Jun 30', y: '2026', wk: 'W27', type: 'TT',   name: '3 km TT №2', meta: '3 km', target: 'sub-11:00', pace: '@ 3:40/km' },
+    { date: 'Jul 18', y: '2026', wk: 'W29', type: 'RACE', name: '5 km tune-up race', meta: '5 km', target: 'sub-19:00', pace: '@ 3:48/km' },
+    { date: 'Aug 04', y: '2026', wk: 'W31', type: 'TT',   name: '3 km TT №3', meta: '3 km', target: 'sub-10:30', pace: '@ 3:30/km' },
+    { date: 'Aug 18', y: '2026', wk: 'W33', type: 'LST',  name: 'Lactate step test №2', meta: '6 × 4 min progressive', target: 'Recalibrate', pace: 'peak volume' },
+    { date: 'Aug 29', y: '2026', wk: 'W35', type: 'RACE', name: '10 km tune-up race', meta: '10 km', target: 'sub-39:00', pace: 'match PB' },
+    { date: 'Sep 22', y: '2026', wk: 'W38', type: 'TT',   name: '5 km TT', meta: '5 km', target: 'sub-18:30', pace: '@ 3:42/km' },
+    { date: 'Oct 17', y: '2026', wk: 'W42', type: 'RACE', name: '10 km · mid-cycle race', meta: '10 km', target: 'sub-38:00', pace: '@ 3:48/km' },
+    { date: 'Nov 03', y: '2026', wk: 'W44', type: 'LST',  name: 'Lactate step test №3', meta: '6 × 4 min progressive', target: 'Pre-taper', pace: '' },
+    { date: 'Nov 17', y: '2026', wk: 'W46', type: 'TT',   name: '3 km TT · sharpener', meta: '3 km', target: 'sub-10:15', pace: '@ 3:25/km' },
+    { date: 'Dec 05', y: '2026', wk: 'W49', type: 'TARGET', name: '10 km · season target', meta: '10 km', target: 'sub-37:30', pace: '@ 3:45/km' }
+  ];
+
+  function typeLabel(t) {
+    if (t === 'RACE')   return '<span class="ctype race"><span class="badge">▲ Race</span></span>';
+    if (t === 'TARGET') return '<span class="ctype target"><span class="badge">★ Target</span></span>';
+    if (t === 'LST')    return '<span class="ctype lst"><span class="badge">○ Lactate Test</span></span>';
+    if (t === 'TT')     return '<span class="ctype"><span class="badge">— Time Trial</span></span>';
+    return '<span class="ctype"><span class="badge">· Session</span></span>';
+  }
+
+  const cal = document.getElementById('calendarGrid');
+  if (cal) {
+    events.forEach(e => {
+      const row = document.createElement('div');
+      row.className = 'cal-row';
+      if (e.type === 'TARGET') row.classList.add('target');
+      else if (e.type === 'RACE' || e.type === 'LST') row.classList.add('major');
+      row.innerHTML =
+        '<span class="cdate">' + e.date + '<span class="y">' + e.y + '</span></span>' +
+        '<span class="cwk">' + e.wk + '</span>' +
+        '<span class="cname">' + e.name + '<span class="meta">' + e.meta + '</span></span>' +
+        '<span class="ctarget"><em>' + e.target + '</em>' + (e.pace ? '<span class="small">' + e.pace + '</span>' : '') + '</span>' +
+        typeLabel(e.type);
+      cal.appendChild(row);
+    });
+  }
+
+  // ────── volume chart ──────
+  const weeklyData = [
+    { label: 'N',    wk: '44',  km: 16.4 }, { label: '', wk: '45', km: 27.3 }, { label: '', wk: '46', km: 21.6 }, { label: '', wk: '47', km: 18.9 },
+    { label: '',     wk: '48',  km: 38.9 }, { label: 'D', wk: '49', km: 16.0 }, { label: '', wk: '50', km: 44.1 }, { label: '', wk: '51', km: 27.0 }, { label: '', wk: '52', km: 25.2 },
+    { label: 'J',    wk: '01',  km: 36.4 }, { label: '', wk: '02', km: 19.8 }, { label: '', wk: '03', km: 56.2 }, { label: '', wk: '04', km: 31.5 },
+    { label: 'F',    wk: '05',  km: 47.3 }, { label: '', wk: '06', km: 46.6 }, { label: '', wk: '07', km: 45.3 }, { label: '', wk: '08', km: 8.7, note: 'gap' }, { label: '', wk: '09', km: 0, note: 'gap' },
+    { label: 'M',    wk: '10',  km: 18.0 }, { label: '', wk: '11', km: 23.3 }, { label: '', wk: '12', km: 47.5 }, { label: '', wk: '13', km: 51.9 },
+    { label: 'A',    wk: '14',  km: 71.7 }, { label: '', wk: '15', km: 10.4, note: 'flare' }, { label: '', wk: '16', km: 48.0 }, { label: '', wk: '17', km: 38.9 },
+    { label: 'M',    wk: '18',  km: 74.4 }, { label: '', wk: '19', km: 80.1 },
+    { label: '',     wk: '20',  km: 85, future: true, phase: 0, current: true },
+    { label: '',     wk: '21',  km: 90, future: true, phase: 0 }, { label: '', wk: '22', km: 95, future: true, phase: 0 },
+    { label: 'J',    wk: '23',  km: 105, future: true, phase: 0 }, { label: '', wk: '24', km: 95, future: true, phase: 0 }, { label: '', wk: '25', km: 110, future: true, phase: 0 },
+    { label: '',     wk: '26',  km: 108, future: true, phase: 1 }, { label: 'J', wk: '27',  km: 112, future: true, phase: 1 }, { label: '', wk: '28', km: 115, future: true, phase: 1 }, { label: '', wk: '29', km: 105, future: true, phase: 1, note: '5k' },
+    { label: '',     wk: '30',  km: 115, future: true, phase: 2 }, { label: 'A', wk: '31',  km: 120, future: true, phase: 2 }, { label: '', wk: '32', km: 108, future: true, phase: 2 }, { label: '', wk: '33', km: 118, future: true, phase: 2 }, { label: '', wk: '34', km: 120, future: true, phase: 2 }, { label: '', wk: '35', km: 105, future: true, phase: 2, note: '10k' },
+    { label: 'S',    wk: '36',  km: 108, future: true, phase: 3 }, { label: '', wk: '37', km: 110, future: true, phase: 3 }, { label: '', wk: '38', km: 105, future: true, phase: 3 }, { label: '', wk: '39', km: 110, future: true, phase: 3 },
+    { label: 'O',    wk: '40',  km: 108, future: true, phase: 3 }, { label: '', wk: '41', km: 105, future: true, phase: 3 }, { label: '', wk: '42', km: 98, future: true, phase: 3, note: 'mid-10k' },
+    { label: '',     wk: '43',  km: 100, future: true, phase: 4 }, { label: 'N', wk: '44',  km: 95, future: true, phase: 4 }, { label: '', wk: '45', km: 98, future: true, phase: 4 }, { label: '', wk: '46', km: 95, future: true, phase: 4 }, { label: '', wk: '47', km: 92, future: true, phase: 4 },
+    { label: 'D',    wk: '48',  km: 75, future: true, phase: 5 }, { label: '', wk: '49', km: 50, future: true, phase: 5, note: 'TARGET' }
+  ];
+
+  (function drawChart() {
+    const svg = document.getElementById('volumeChart');
+    if (!svg) return;
+    const W = 1200, H = 320;
+    const padL = 0, padR = 12, padT = 20, padB = 32;
+    const chartW = W - padL - padR;
+    const chartH = H - padT - padB;
+    const maxKm = 130;
+    const n = weeklyData.length;
+    const barW = chartW / n;
+    const barGap = barW * 0.18;
+    const phaseColors = ['#5a2510', '#7a3017', '#a8401f', '#c25527', '#d77047', '#e0925f'];
+
+    let html = '';
+
+    // phase bands behind future bars
+    let cursor = 28;
+    const futureCounts = [6, 4, 6, 7, 5, 2];
+    futureCounts.forEach((cnt, i) => {
+      const x = padL + cursor * barW;
+      const w = cnt * barW;
+      html += '<rect x="' + x + '" y="' + padT + '" width="' + w + '" height="' + chartH + '" fill="' + phaseColors[i] + '" opacity="0.14"/>';
+      cursor += cnt;
+    });
+
+    // gridlines
+    [25, 50, 75, 100, 125].forEach(km => {
+      const y = padT + chartH - (km / maxKm) * chartH;
+      html += '<line x1="' + padL + '" y1="' + y + '" x2="' + (W - padR) + '" y2="' + y + '" stroke="#2a2520" stroke-dasharray="2,4"/>';
+    });
+
+    // bars
+    weeklyData.forEach((d, i) => {
+      const x = padL + i * barW + barGap / 2;
+      const w = barW - barGap;
+      const h = (d.km / maxKm) * chartH;
+      const y = padT + chartH - h;
+      let fill = '#6a6258';
+      if (d.future) fill = '#ff5b1f';
+      if (d.current) fill = '#f4ede0';
+      if (d.note === 'gap' || d.note === 'flare') fill = '#8a1f15';
+      const opacity = d.future ? (d.current ? 1 : 0.85) : 0.55;
+      html += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + fill + '" opacity="' + opacity + '"/>';
+
+      if (d.note === 'flare') {
+        html += '<text x="' + (x + w/2) + '" y="' + (y - 5) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff5b1f">flare</text>';
+      }
+      if (d.note === '5k' || d.note === '10k' || d.note === 'mid-10k') {
+        const flag = d.note === '5k' ? '5k' : '10k';
+        html += '<circle cx="' + (x + w/2) + '" cy="' + (y - 8) + '" r="3" fill="#ff5b1f"/>';
+        html += '<text x="' + (x + w/2) + '" y="' + (y - 14) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#ff8a4d">' + flag + '</text>';
+      }
+      if (d.note === 'TARGET') {
+        html += '<text x="' + (x + w/2) + '" y="' + (y - 8) + '" text-anchor="middle" font-family="Fraunces" font-size="13" font-style="italic" fill="#ff5b1f">race</text>';
+      }
+    });
+
+    // current-week label
+    const currIdx = weeklyData.findIndex(d => d.current);
+    if (currIdx >= 0) {
+      const x = padL + currIdx * barW + barW / 2;
+      const yTop = padT + chartH - (85 / maxKm) * chartH - 22;
+      html += '<text x="' + x + '" y="' + yTop + '" text-anchor="middle" font-family="JetBrains Mono" font-size="10" font-weight="500" fill="#f4ede0">W20</text>';
+      html += '<line x1="' + x + '" y1="' + (yTop + 4) + '" x2="' + x + '" y2="' + (padT + chartH - (85 / maxKm) * chartH - 4) + '" stroke="#f4ede0"/>';
+    }
+
+    // month labels
+    weeklyData.forEach((d, i) => {
+      if (!d.label) return;
+      const x = padL + i * barW + barW / 2;
+      html += '<text x="' + x + '" y="' + (H - 10) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#968d80" letter-spacing="0.1em">' + d.label + '</text>';
+    });
+
+    // divider plan vs actual
+    const divX = padL + 28 * barW;
+    html += '<line x1="' + divX + '" y1="' + padT + '" x2="' + divX + '" y2="' + (padT + chartH) + '" stroke="#f4ede0" stroke-dasharray="3,3" opacity="0.5"/>';
+    html += '<text x="' + (divX + 6) + '" y="' + (padT + 14) + '" font-family="JetBrains Mono" font-size="9" fill="#f4ede0" letter-spacing="0.16em" opacity="0.7">PLAN →</text>';
+    html += '<text x="' + (divX - 6) + '" y="' + (padT + 14) + '" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#968d80" letter-spacing="0.16em">← ACTUAL</text>';
+
+    svg.innerHTML = html;
+
+    // y-axis
+    const yax = document.getElementById('chartYaxis');
+    if (yax) {
+      [0, 25, 50, 75, 100, 125].forEach(km => {
+        const yt = document.createElement('div');
+        yt.className = 'yt';
+        yt.textContent = km;
+        yt.style.bottom = ((km / maxKm) * 100) + '%';
+        yax.appendChild(yt);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
