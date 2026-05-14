@@ -1228,6 +1228,121 @@
     text-transform: none;
     font-size: 13px;
   }
+
+  /* ────── MOBILE RESPONSIVE · ≤600px ────── */
+  @media (max-width: 600px) {
+    /* topbar — compact, hide season tag */
+    .topbar { padding: 10px 0; }
+    .topbar-inner { gap: 10px; }
+    .topbar .left { gap: 10px; font-size: 10px; letter-spacing: 0.14em; }
+    .topbar .left .season-tag { display: none; }
+    .topbar .right { gap: 14px; font-size: 9px; letter-spacing: 0.14em; }
+
+    /* hero */
+    .hero { padding: 26px 0 22px; }
+    .hero-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+    .hero-target { grid-column: 1 / -1; }
+    .hero-stat { padding-top: 12px; min-width: 0; }
+    .hero-stat .lab { font-size: 8px; letter-spacing: 0.18em; }
+    .hero-stat .val { font-size: clamp(26px, 7vw, 34px); }
+    .hero-stat .sub { font-size: 9px; }
+
+    /* tabs */
+    .tab { margin-right: 22px; padding: 14px 0; font-size: 10px; letter-spacing: 0.16em; }
+    .tab .num { font-size: 12px; margin-right: 6px; }
+
+    /* panel + panel head */
+    .panel { padding: 32px 0 64px; }
+    .panel-head { margin-bottom: 22px; gap: 12px; padding-bottom: 12px; }
+    .panel-head .meta { text-align: left; font-size: 9px; letter-spacing: 0.14em; }
+
+    /* day rows — compact layout */
+    .day-row { grid-template-columns: 30px 50px 1fr auto; gap: 10px; padding: 14px 0; }
+    .day-row .dow { font-size: 16px; }
+    .day-row .date { font-size: 10px; letter-spacing: 0.04em; }
+    .day-row .desc { font-size: 13px; line-height: 1.35; }
+    .day-row .desc .meta { letter-spacing: 0.04em; font-size: 9px; }
+    .day-row .km { font-size: 20px; }
+    .day-row .km small { font-size: 8px; letter-spacing: 0.1em; }
+    .day-row.featured,
+    .day-row.featured-2,
+    .day-row.featured-3 { margin: 0 -10px; padding: 14px 10px; }
+
+    /* week total */
+    .week-total .val { font-size: 34px; }
+
+    /* feature cards */
+    .feature-cards { gap: 22px; }
+    .fcard { padding: 20px 16px; }
+    .fcard h3 { font-size: 21px; }
+    .fcard .tag { font-size: 9px; letter-spacing: 0.18em; }
+    .main-set { padding: 12px 14px; }
+    .main-set .formula { font-size: 18px; }
+
+    /* lact + ex tables */
+    .lact-table { font-size: 10px; }
+    .lact-table td:first-child { width: 82px; font-size: 12px; }
+    .ex-list { font-size: 11px; gap: 6px 12px; }
+    .ex-list .e > * { padding: 6px 0; }
+
+    /* calendar already collapses at 920px; tighten dates */
+    .cdate { font-size: 11px; }
+    .cname { font-size: 17px; }
+    .cal-row.target .cname { font-size: 21px; }
+
+    /* periodization timeline — shrink to fit, don't scroll (preserves here-marker positioning) */
+    .month-axis .m { padding: 5px 4px; font-size: 8px; letter-spacing: 0.1em; }
+    .phases-row { height: 70px; }
+    .phase-block { padding: 6px 5px; }
+    .phase-block .ix { font-size: 10px; }
+    .phase-block .name { font-size: 7px; letter-spacing: 0.05em; margin-top: 3px; }
+    .phase-block .vol { display: none; }
+    .here-label { font-size: 8px; letter-spacing: 0.1em; top: -36px; }
+    .here-marker::before { width: 12px; height: 12px; }
+    .here-marker::after { width: 4px; height: 4px; }
+    .tick .label { font-size: 8px; }
+
+    /* phase cards — already 1col at 600px, just tighten */
+    .phase-cards { margin-top: 36px; gap: 22px; }
+    .phase-card .ph-title { font-size: 18px; }
+
+    /* principles */
+    .principles-grid { margin-top: 44px; padding-top: 24px; gap: 22px; }
+
+    /* volume */
+    .chart-legend { gap: 16px; font-size: 9px; }
+    .vol-context { grid-template-columns: 1fr; gap: 0; margin-top: 36px; }
+    .vol-context .item { border-left: 0; padding-left: 0; padding: 14px 0; border-top: 1px solid var(--rule); }
+    .vol-context .item:first-child { padding-top: 0; border-top: 0; }
+    .vol-context .v { font-size: 24px; }
+
+    /* zones */
+    .zones-wrap { gap: 32px; }
+    .zones-table th { font-size: 9px; padding: 10px 8px 10px 0; }
+    .zones-table td { padding: 14px 8px 14px 0; }
+    .zones-table .zone-name { font-size: 15px; }
+    .zones-table .zone-name small { font-size: 8px; letter-spacing: 0.12em; }
+    .zones-table .data { font-size: 11px; }
+    .zones-table .data .unit { font-size: 8px; }
+    .zones-table .purpose { font-size: 11px; }
+
+    /* hrmax card */
+    .hrmax-card { padding: 18px 0 0; }
+    .hrmax-card .big { font-size: 56px; }
+
+    /* footer */
+    footer { padding: 24px 0; gap: 12px; flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ────── VERY NARROW · ≤420px (iPhone SE etc.) ────── */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-target .time { font-size: clamp(48px, 14vw, 64px); }
+    .day-row { grid-template-columns: 28px 1fr auto; }
+    .day-row .date { display: none; }
+    .topbar .right span:first-child { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -1238,7 +1353,7 @@
       <div class="left">
         <span class="monogram">Y</span>
         <strong>YEW WEE · RUN COACH</strong>
-        <span style="color: var(--paper-4)">— SEASON 2026</span>
+        <span class="season-tag" style="color: var(--paper-4)">— SEASON 2026</span>
       </div>
       <div class="right">
         <span><span class="pulse-dot"></span><strong>W20</strong> · IN PROGRESS</span>
