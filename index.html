@@ -319,6 +319,98 @@
   }
   .panel-head .meta strong { color: var(--paper); font-weight: 400; }
 
+  /* ────── WEEK NAVIGATION ────── */
+  .week-nav {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .wk-btn {
+    background: var(--ink-2);
+    border: 1px solid var(--rule-2);
+    color: var(--paper);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .wk-btn:hover { border-color: var(--heat); color: var(--heat); }
+  .wk-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .wk-select {
+    flex: 1;
+    background: var(--ink-2);
+    border: 1px solid var(--rule-2);
+    color: var(--paper);
+    padding: 9px 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--paper-3) 50%), linear-gradient(135deg, var(--paper-3) 50%, transparent 50%);
+    background-position: calc(100% - 16px) 50%, calc(100% - 11px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 32px;
+  }
+  .wk-select:hover { border-color: var(--heat); }
+  .wk-select:focus { outline: none; border-color: var(--heat); }
+  .wk-select option[data-status="done"] { color: var(--paper-3); }
+  .wk-select option[data-status="current"] { color: var(--heat); font-weight: 600; }
+  .week-content { display: none; }
+  .week-content.active { display: block; }
+
+  .week-stub {
+    padding: 64px 0;
+    text-align: center;
+    color: var(--paper-3);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    border: 1px dashed var(--rule-2);
+    background: var(--ink-2);
+  }
+  .week-stub h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .week-stub .phase-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid var(--rule-2);
+    color: var(--paper-2);
+    margin: 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 10px;
+  }
+  .week-stub .stub-msg {
+    margin-top: 24px;
+    color: var(--paper-4);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .week-stub .stub-msg span { color: var(--paper-2); }
+
+  /* PAST WEEK status overlay on day rows */
+  .day-row.actual-done .km { color: var(--heat); }
+  .day-row.actual-done .desc { color: var(--paper); }
+
   /* ────── PANEL: THIS WEEK ────── */
   .week-layout {
     display: grid;
@@ -1394,7 +1486,7 @@
   <div class="tabs-bar">
     <div class="wrap">
       <div class="tabs">
-        <button class="tab active" data-tab="week"><span class="num">i.</span>This Week</button>
+        <button class="tab active" data-tab="week"><span class="num">i.</span>Weekly</button>
         <button class="tab" data-tab="calendar"><span class="num">ii.</span>Calendar</button>
         <button class="tab" data-tab="periodization"><span class="num">iii.</span>Periodization</button>
         <button class="tab" data-tab="volume"><span class="num">iv.</span>Volume</button>
@@ -1403,9 +1495,20 @@
     </div>
   </div>
 
-  <!-- PANEL: THIS WEEK -->
+  <!-- PANEL: WEEKLY -->
   <div class="panel active" data-panel="week">
     <div class="wrap">
+
+      <!-- WEEK NAVIGATION -->
+      <div class="week-nav">
+        <button class="wk-btn wk-prev" aria-label="Previous week">◀</button>
+        <select id="weekSelect" class="wk-select"></select>
+        <button class="wk-btn wk-next" aria-label="Next week">▶</button>
+      </div>
+
+      <!-- WEEK 21 (current) -->
+      <div class="week-content active" data-wk="21">
+
       <div class="panel-head">
         <h1>Week <em>21</em> · 18 – 24 May</h1>
         <div class="meta">~90 km · 7 sessions · 1 quality · 2 lower + 4 upper strength<br><strong>Threshold reintroduction · Block I, Week 2 of 6</strong></div>
@@ -1571,6 +1674,136 @@
 
         </div>
       </div>
+
+      </div><!-- end W21 -->
+
+      <!-- WEEK 20 (completed) -->
+      <div class="week-content" data-wk="20">
+        <div class="panel-head">
+          <h1>Week <em>20</em> · 11 – 17 May · <span style="color: var(--paper-3); font-size: 60%;">✓ done</span></h1>
+          <div class="meta">~86 km · 7 sessions · 1 quality · 2 lower + 4 upper strength<br><strong>Threshold reintroduction · Block I, Week 1 of 6</strong></div>
+        </div>
+
+        <div class="week-layout">
+          <div>
+            <div class="days">
+              <div class="day-row actual-done">
+                <span class="dow">Mon</span><span class="date">11 May</span>
+                <span class="desc">Easy + 4×80m strides<span class="meta">5:06/km · HR 134 · done</span></span>
+                <span class="km">12.7<small>km · ✓</small></span>
+              </div>
+              <div class="day-row featured actual-done">
+                <span class="dow">Tue</span><span class="date">12 May</span>
+                <span class="desc">Sub-Threshold #1 · calibration<span class="meta">5×6 min @ 4:17/km avg · HR max 168 · hamstring 2–3/10</span></span>
+                <span class="km">13.9<small>km · ✓</small></span>
+              </div>
+              <div class="day-row featured-2 actual-done">
+                <span class="dow">Wed</span><span class="date">13 May</span>
+                <span class="desc">Easy (recovery) + Strength A · 1st unilateral<span class="meta">15.6 km @ 5:23/km · HR 128 · hamstring 0/10</span></span>
+                <span class="km">15.6<small>km · ✓</small></span>
+              </div>
+              <div class="day-row featured-3 actual-done">
+                <span class="dow">Thu</span><span class="date">14 May</span>
+                <span class="desc">Recovery easy · revised from easy+strides<span class="meta">5:54/km · HR 122 · 23 bpm under cap · heavy legs called it</span></span>
+                <span class="km">10.9<small>km · ✓</small></span>
+              </div>
+              <div class="day-row rest">
+                <span class="dow">Fri</span><span class="date">15 May</span>
+                <span class="desc">Rest day<span class="meta">As planned</span></span>
+                <span class="km">—</span>
+              </div>
+              <div class="day-row featured actual-done">
+                <span class="dow">Sat</span><span class="date">16 May</span>
+                <span class="desc">Long run + first Tailwind (clean)<span class="meta">5:14/km · HR 134/148 · 2nd LR decoupling · Tailwind tolerated</span></span>
+                <span class="km">21.4<small>km · ✓</small></span>
+              </div>
+              <div class="day-row featured-3">
+                <span class="dow">Sun</span><span class="date">17 May</span>
+                <span class="desc">Recovery + Strength B · light<span class="meta">12 km @ 5:25–5:50 · HR ≤145 · in progress today</span></span>
+                <span class="km">12<small>km</small></span>
+              </div>
+            </div>
+            <div class="week-total">
+              <span class="lab">Weekly total</span>
+              <span class="val">86<em>km</em></span>
+            </div>
+          </div>
+
+          <div class="feature-cards">
+
+            <!-- WEEK 20 RECAP -->
+            <div class="fcard heat">
+              <div class="tag">Week 20 · summary</div>
+              <h3>Threshold reintroduced cleanly</h3>
+              <p class="subt">Big-rocks of the week — what landed, what we learned.</p>
+
+              <table class="lact-table">
+                <thead><tr><th>Signal</th><th>Result</th></tr></thead>
+                <tbody>
+                  <tr><td>Sub-T #1 calibration</td><td class="pace-hold">5 reps @ 4:17/km · HR max 168 · pace-disciplined</td></tr>
+                  <tr><td>Hamstring during reps</td><td class="pace-up">2–3/10 (load ceiling)</td></tr>
+                  <tr><td>Hamstring by week-end</td><td class="pace-hold">0/10 · 4 consecutive clean days</td></tr>
+                  <tr><td>LR pace–HR decoupling</td><td class="pace-hold">5:14 @ HR 134 — 2nd consecutive LR same pattern</td></tr>
+                  <tr><td>First Tailwind LR</td><td class="pace-hold">1 scoop · no GI · cleared for 2-scoop next week</td></tr>
+                  <tr><td>Volume</td><td class="pace-hold">86 km · +6 km vs W19 · on trajectory</td></tr>
+                </tbody>
+              </table>
+
+              <div class="callout">
+                <strong>Key takeaway:</strong> sub-T tolerance + LR decoupling pattern both confirmed. W21 Tue Sub-T #2 is the next gating decision — if hamstring 0–1/10 at same load, W22 introduces Norwegian doubles.
+              </div>
+            </div>
+
+            <!-- TUESDAY SUB-T #1 — DONE -->
+            <div class="fcard heat">
+              <div class="tag">Tuesday 12 May · Sub-T #1 · ✓ completed</div>
+              <h3>Sub-Threshold calibration</h3>
+              <p class="subt">First quality session in 8+ weeks. Pace-controlled, HR room to spare.</p>
+
+              <div class="main-set">
+                <div class="lbl">Result</div>
+                <div class="formula"><em>5</em> <span class="x">×</span> 6 min @ <em>4:17</em>/km avg · HR max 168</div>
+              </div>
+
+              <table class="lact-table">
+                <thead><tr><th>Metric</th><th>Prescribed</th><th>Actual</th></tr></thead>
+                <tbody>
+                  <tr><td>Rep pace</td><td>4:20–4:30</td><td class="pace-up">4:14 → 4:21 (avg 4:17)</td></tr>
+                  <tr><td>HR max</td><td>≤178</td><td class="pace-hold">168 (85% HRmax)</td></tr>
+                  <tr><td>HR drift</td><td>&lt;5%</td><td class="pace-hold">&lt;2% (clean)</td></tr>
+                  <tr><td>Hamstring</td><td>0</td><td class="pace-down">2–3/10 during reps</td></tr>
+                  <tr><td>Lactate</td><td>2.5–3.5</td><td class="pace-down">Unreliable strips — dropped</td></tr>
+                </tbody>
+              </table>
+
+              <p class="rationale">HR + pace data validate upper sub-T effort. Lactate dropped from routine sub-T sessions (strips expired). Hamstring 2–3/10 = load ceiling — W21 Tue #2 must produce 0–1 to confirm tendon adapted. Full log: <code>logs/sessions/2026-05-12-sub-threshold-1.md</code>.</p>
+            </div>
+
+            <!-- SATURDAY 16 MAY LR — DONE -->
+            <div class="fcard heat">
+              <div class="tag">Saturday 16 May · LR + first Tailwind · ✓ completed</div>
+              <h3>21.4 km · controlled · 5:14/km</h3>
+              <p class="subt">HR-disciplined LR. Tailwind GI clean. 2nd consecutive decoupling LR.</p>
+
+              <table class="lact-table">
+                <thead><tr><th>Metric</th><th>Prescribed</th><th>Actual</th></tr></thead>
+                <tbody>
+                  <tr><td>Distance</td><td>22 km</td><td class="pace-hold">21.43 km</td></tr>
+                  <tr><td>Middle-segment pace</td><td>4:55–5:10</td><td class="pace-down">5:14 (4 sec/km slow)</td></tr>
+                  <tr><td>HR avg</td><td>148–156</td><td class="pace-hold">134 (-14 bpm under target)</td></tr>
+                  <tr><td>HR max</td><td>≤158</td><td class="pace-hold">148</td></tr>
+                  <tr><td>Hamstring</td><td>0</td><td class="pace-hold">0/10 throughout</td></tr>
+                  <tr><td>Tailwind 1 scoop</td><td>No GI</td><td class="pace-hold">Clean — bump to 2 scoops next week</td></tr>
+                </tbody>
+              </table>
+
+              <p class="rationale">HR stayed buried at LR pace — second consecutive Saturday showing pace–HR decoupling (May 9: 4:51 @ HR 146 · May 16: 5:14 @ HR 134). Pattern is real. Zones await Jun 16 LST recalibration.</p>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- end W20 -->
+
     </div>
   </div>
 
@@ -1579,7 +1812,7 @@
     <div class="wrap">
       <div class="panel-head">
         <h1>Calendar · races, tests, <em>checkpoints</em>.</h1>
-        <div class="meta">14 events · 3 races · 3 self-administered lactate tests<br><strong>May → December · fresh strips required for LSTs</strong></div>
+        <div class="meta">14 events · 3 races · 3 self-administered lactate tests<br><strong>May → December · click any row to open that week's plan</strong></div>
       </div>
       <div class="cal-grid" id="calendarGrid"></div>
     </div>
@@ -1697,6 +1930,140 @@
     document.getElementById('countdown').textContent = days;
   })();
 
+  // ────── week selector ──────
+  (function () {
+    // Per-week metadata: dates (Mon start), phase, target km, current/done flag.
+    // W20 anchors: 2026-05-11 (Mon).
+    const W20_MON = new Date('2026-05-11T00:00:00');
+    const CURRENT_WK = 21;          // edit when the active week rolls forward
+    const LAST_DONE_WK = 20;        // edit when previous week closes
+
+    // Volume + phase data from periodization (kept in sync with the phases array).
+    const weekTargets = {
+      20: { km: 86, phase: 'I',  pName: 'Threshold reintroduction', pn: '1 of 6',  done: true,  actual: '~86 km · 1 quality · sub-T calibrated · 2 LRs decoupled' },
+      21: { km: 90, phase: 'I',  pName: 'Threshold reintroduction', pn: '2 of 6',  current: true },
+      22: { km: 95, phase: 'I',  pName: 'Threshold reintroduction', pn: '3 of 6' },
+      23: { km: 105, phase: 'I', pName: 'Threshold reintroduction', pn: '4 of 6' },
+      24: { km: 95, phase: 'I',  pName: 'Threshold reintroduction · recovery dip', pn: '5 of 6' },
+      25: { km: 110, phase: 'I', pName: 'Threshold reintroduction', pn: '6 of 6' },
+      26: { km: 108, phase: 'II', pName: 'Norwegian + speed intro', pn: '1 of 4' },
+      27: { km: 112, phase: 'II', pName: 'Norwegian + speed intro', pn: '2 of 4' },
+      28: { km: 115, phase: 'II', pName: 'Norwegian + speed intro', pn: '3 of 4' },
+      29: { km: 105, phase: 'II', pName: 'Norwegian + speed intro · 5k race', pn: '4 of 4', note: '5k tune-up race' },
+      30: { km: 115, phase: 'III', pName: 'Speed-endurance bridge', pn: '1 of 6' },
+      31: { km: 120, phase: 'III', pName: 'Speed-endurance bridge · peak', pn: '2 of 6' },
+      32: { km: 108, phase: 'III', pName: 'Speed-endurance bridge', pn: '3 of 6' },
+      33: { km: 118, phase: 'III', pName: 'Speed-endurance bridge', pn: '4 of 6' },
+      34: { km: 120, phase: 'III', pName: 'Speed-endurance bridge · peak', pn: '5 of 6' },
+      35: { km: 105, phase: 'III', pName: 'Speed-endurance · 10k race', pn: '6 of 6', note: '10k tune-up race' },
+      36: { km: 108, phase: 'IV', pName: '10k specific prep', pn: '1 of 7' },
+      37: { km: 110, phase: 'IV', pName: '10k specific prep', pn: '2 of 7' },
+      38: { km: 105, phase: 'IV', pName: '10k specific prep', pn: '3 of 7' },
+      39: { km: 110, phase: 'IV', pName: '10k specific prep', pn: '4 of 7' },
+      40: { km: 108, phase: 'IV', pName: '10k specific prep', pn: '5 of 7' },
+      41: { km: 105, phase: 'IV', pName: '10k specific prep', pn: '6 of 7' },
+      42: { km: 98, phase: 'IV', pName: '10k specific prep · mid-cycle 10k', pn: '7 of 7', note: 'Oct 10k race' },
+      43: { km: 100, phase: 'V', pName: '10k sharpening', pn: '1 of 5' },
+      44: { km: 95, phase: 'V', pName: '10k sharpening', pn: '2 of 5' },
+      45: { km: 98, phase: 'V', pName: '10k sharpening', pn: '3 of 5' },
+      46: { km: 95, phase: 'V', pName: '10k sharpening', pn: '4 of 5' },
+      47: { km: 92, phase: 'V', pName: '10k sharpening', pn: '5 of 5' },
+      48: { km: 75, phase: 'VI', pName: 'Taper', pn: '1 of 2' },
+      49: { km: 50, phase: 'VI', pName: 'Taper · race week', pn: '2 of 2', note: 'Dec 10k · TARGET RACE' }
+    };
+
+    const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtRange(wk) {
+      const monday = new Date(W20_MON.getTime() + (wk - 20) * 7 * 86400000);
+      const sunday = new Date(monday.getTime() + 6 * 86400000);
+      const mm = monthShort[monday.getMonth()];
+      const sm = monthShort[sunday.getMonth()];
+      if (mm === sm) return `${monday.getDate()}–${sunday.getDate()} ${mm}`;
+      return `${monday.getDate()} ${mm} – ${sunday.getDate()} ${sm}`;
+    }
+
+    // Populate selector
+    const sel = document.getElementById('weekSelect');
+    if (!sel) return;
+    const weeks = Object.keys(weekTargets).map(Number).sort((a, b) => a - b);
+    weeks.forEach(wk => {
+      const t = weekTargets[wk];
+      const status = t.done ? 'done' : t.current ? 'current' : 'planned';
+      const tag = t.done ? '✓ done' : t.current ? '· current' : '· planned';
+      const opt = document.createElement('option');
+      opt.value = wk;
+      opt.dataset.status = status;
+      opt.textContent = `W${wk} · ${fmtRange(wk)} · ${tag}`;
+      if (wk === CURRENT_WK) opt.selected = true;
+      sel.appendChild(opt);
+    });
+
+    // Build stub content for future weeks (any week without a hardcoded .week-content)
+    const container = document.querySelector('.panel[data-panel="week"] .wrap');
+    const existing = new Set(
+      Array.from(document.querySelectorAll('.week-content')).map(el => Number(el.dataset.wk))
+    );
+    weeks.forEach(wk => {
+      if (existing.has(wk)) return;
+      const t = weekTargets[wk];
+      const div = document.createElement('div');
+      div.className = 'week-content';
+      div.dataset.wk = wk;
+      const noteBlock = t.note ? `<div class="phase-chip" style="border-color: var(--heat); color: var(--heat); margin-top: 18px;">${t.note}</div>` : '';
+      div.innerHTML = `
+        <div class="panel-head">
+          <h1>Week <em>${wk}</em> · ${fmtRange(wk)}</h1>
+          <div class="meta"><strong>${t.pName} · Block ${t.phase}, week ${t.pn}</strong></div>
+        </div>
+        <div class="week-stub">
+          <h2>~${t.km} km</h2>
+          <div>
+            <span class="phase-chip">Phase ${t.phase}</span>
+            <span class="phase-chip">Week ${t.pn}</span>
+          </div>
+          ${noteBlock}
+          <div class="stub-msg">Detailed weekly plan written closer to the date.<br><span>Volume target above is from the periodization model; the day-by-day prescription drops when we're within ~1 week.</span></div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    // Switching logic
+    function show(wk) {
+      document.querySelectorAll('.week-content').forEach(el => {
+        el.classList.toggle('active', Number(el.dataset.wk) === wk);
+      });
+      // prev/next disabled states
+      const idx = weeks.indexOf(wk);
+      document.querySelector('.wk-prev').disabled = (idx <= 0);
+      document.querySelector('.wk-next').disabled = (idx >= weeks.length - 1);
+    }
+    sel.addEventListener('change', () => show(Number(sel.value)));
+    document.querySelector('.wk-prev').addEventListener('click', () => {
+      const idx = sel.selectedIndex;
+      if (idx > 0) { sel.selectedIndex = idx - 1; show(Number(sel.value)); }
+    });
+    document.querySelector('.wk-next').addEventListener('click', () => {
+      const idx = sel.selectedIndex;
+      if (idx < sel.options.length - 1) { sel.selectedIndex = idx + 1; show(Number(sel.value)); }
+    });
+
+    // Initial state
+    show(CURRENT_WK);
+
+    // Expose globally for calendar deep-links
+    window.runCoachShowWeek = function (wk) {
+      const target = Number(wk);
+      if (!weekTargets[target]) return;
+      sel.value = target;
+      show(target);
+      // also switch to the Weekly tab
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'week'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.dataset.panel === 'week'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  })();
+
   // ────── phases ──────
   const phases = [
     { i: 'I',   name: 'Threshold reintroduction', short: 'Threshold reintro', weeks: 'W20–W25', dates: 'May 11 – Jun 21', w: 6, vol: '85 → 105 km', light: '#9a4a2a', quality: '1× sub-T → 2×' },
@@ -1802,6 +2169,12 @@
       row.className = 'cal-row';
       if (e.type === 'TARGET') row.classList.add('target');
       else if (e.type === 'RACE' || e.type === 'LST') row.classList.add('major');
+      row.style.cursor = 'pointer';
+      row.title = 'Open ' + e.wk + ' plan';
+      row.addEventListener('click', () => {
+        const wkNum = Number(e.wk.replace(/^W/, ''));
+        if (window.runCoachShowWeek) window.runCoachShowWeek(wkNum);
+      });
       row.innerHTML =
         '<span class="cdate">' + e.date + '<span class="y">' + e.y + '</span></span>' +
         '<span class="cwk">' + e.wk + '</span>' +
