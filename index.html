@@ -1517,11 +1517,11 @@
       <div class="week-layout">
         <div>
           <div class="days">
-            <div class="day-row actual-done">
+            <div class="day-row">
               <span class="dow">Mon</span>
               <span class="date">25 May</span>
-              <span class="desc">Easy + strides · DONE + Upper Push A PM<span class="meta">5:43/km · HR 124/141 · strides confirmed · deep recovery zone throughout</span></span>
-              <span class="km">14.1<small>km · ✓</small></span>
+              <span class="desc">Easy + strides + Upper Push A PM<span class="meta">NB Rebel · 5:10–5:40/km · HR ≤ 154 · 6 × 80 m strides post-run</span></span>
+              <span class="km">13<small>km</small></span>
             </div>
             <div class="day-row featured">
               <span class="dow">Tue</span>
@@ -1716,16 +1716,16 @@
               <span class="desc">LR (pace probe) · DONE · Upper Pull B PM<span class="meta">26.04 km @ 5:01/km · HR avg 140 / max 152 · hamstring 0/10 · 4 km over plan, HR buried</span></span>
               <span class="km">26<small>km · ✓</small></span>
             </div>
-            <div class="day-row featured-3">
+            <div class="day-row featured-3 actual-done">
               <span class="dow">Sun</span>
               <span class="date">24 May</span>
-              <span class="desc">Recovery + Strength B · no run logged<span class="meta">No Strava activity recorded Sun 5/24 — Mon 5/25 run (14.1 km) confirmed as W22 Mon</span></span>
-              <span class="km">—</span>
+              <span class="desc">Recovery + Strength B · DONE<span class="meta">14.1 km @ 5:43/km · HR 124/141 · deep recovery zone throughout · Cloudmonster 3</span></span>
+              <span class="km">14.1<small>km · ✓</small></span>
             </div>
           </div>
           <div class="week-total">
             <span class="lab">Weekly total</span>
-            <span class="val">90.7<em>km actual</em></span>
+            <span class="val">90.4<em>km actual</em></span>
           </div>
         </div>
 
@@ -2108,7 +2108,7 @@
     // Volume + phase data from periodization (kept in sync with the phases array).
     const weekTargets = {
       20: { km: 87, phase: 'I',  pName: 'Threshold reintroduction', pn: '1 of 6',  done: true,  actual: '87 km · 1 quality · sub-T calibrated · 2 LRs decoupled · hamstring 0/10 by week-end' },
-      21: { km: 90.7, phase: 'I',  pName: 'Threshold reintroduction', pn: '2 of 6', done: true, actual: '90.7 km · treadmill sub-T (8.5–8.9 MPH, 4:23–4:11/km equiv) · LR 26 km HR 140 · hamstring 0/10 throughout · 3rd consecutive clean LR' },
+      21: { km: 90.4, phase: 'I',  pName: 'Threshold reintroduction', pn: '2 of 6', done: true, actual: '90.4 km · treadmill sub-T 0/10 hamstring · Sat LR 26 km HR 140 · Sun 14.1 km recovery · 3rd consecutive clean LR' },
       22: { km: 92, phase: 'I',  pName: 'Threshold reintroduction — first Norwegian double', pn: '3 of 6', current: true },
       23: { km: 105, phase: 'I', pName: 'Threshold reintroduction', pn: '4 of 6' },
       24: { km: 95, phase: 'I',  pName: 'Threshold reintroduction · recovery dip', pn: '5 of 6' },
@@ -2362,7 +2362,7 @@
     { label: 'A',    wk: '14',  km: 71.7 }, { label: '', wk: '15', km: 10.4, note: 'flare' }, { label: '', wk: '16', km: 48.0 }, { label: '', wk: '17', km: 38.9 },
     { label: 'M',    wk: '18',  km: 74.4 }, { label: '', wk: '19', km: 80.1 },
     { label: '',     wk: '20',  km: 87 },
-    { label: '',     wk: '21',  km: 90.7 },
+    { label: '',     wk: '21',  km: 90.4 },
     { label: '',     wk: '22',  km: 92, future: true, phase: 0, current: true },
     { label: 'J',    wk: '23',  km: 105, future: true, phase: 0 }, { label: '', wk: '24', km: 95, future: true, phase: 0 }, { label: '', wk: '25', km: 110, future: true, phase: 0 },
     { label: '',     wk: '26',  km: 108, future: true, phase: 1 }, { label: 'J', wk: '27',  km: 112, future: true, phase: 1 }, { label: '', wk: '28', km: 115, future: true, phase: 1 }, { label: '', wk: '29', km: 105, future: true, phase: 1, note: '5k' },
