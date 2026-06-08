@@ -1426,6 +1426,17 @@
     footer { padding: 24px 0; gap: 12px; flex-direction: column; align-items: flex-start; }
   }
 
+  /* ────── PANEL: STRENGTH ────── */
+  .str-sec { margin: 40px 0 6px; padding-top: 24px; border-top: 1px solid var(--rule); }
+  .str-sec.first { margin-top: 10px; padding-top: 0; border-top: 0; }
+  .str-sec .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lactate); }
+  .str-sec.upper .lbl { color: var(--heat); }
+  .str-sec h2 { font-family: var(--serif); font-size: 23px; font-weight: 500; color: var(--paper); margin: 5px 0 0; font-variation-settings: "opsz" 60, "SOFT" 20; }
+  .str-sec .when { font-family: var(--mono); font-size: 11px; color: var(--paper-3); margin-top: 3px; letter-spacing: 0.02em; }
+  .zones-table td.exn { font-family: var(--serif); font-size: 16px; color: var(--paper); font-variation-settings: "opsz" 40; }
+  .zones-table td.exn small { display: block; font-family: var(--mono); font-size: 10px; color: var(--paper-4); margin-top: 3px; letter-spacing: 0.04em; }
+  .str-note { margin-top: 36px; padding-top: 16px; border-top: 1px dashed var(--rule-2); font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--paper-2); line-height: 1.55; }
+
   /* ────── VERY NARROW · ≤420px (iPhone SE etc.) ────── */
   @media (max-width: 420px) {
     .wrap { padding: 0 14px; }
@@ -1491,6 +1502,7 @@
         <button class="tab" data-tab="periodization"><span class="num">iii.</span>Periodization</button>
         <button class="tab" data-tab="volume"><span class="num">iv.</span>Volume</button>
         <button class="tab" data-tab="zones"><span class="num">v.</span>Zones</button>
+        <button class="tab" data-tab="strength"><span class="num">vi.</span>Strength</button>
       </div>
     </div>
   </div>
@@ -1637,7 +1649,7 @@
               <div class="e"><span class="ename"><em>Wed</em> · Power B: pogo / lateral bound / calf / step-up</span><span class="esets">see notes</span></div>
             </div>
 
-            <p class="rationale">Canonical schedule (reconciled 8 Jun): lower = Wed-A / Sun-B; upper = Push A Mon, Pull A Tue, Push B Thu, Pull B Sat. This week swaps A→Sun, B→Wed for the double.</p>
+            <p class="rationale">Canonical schedule (reconciled 8 Jun): lower = Wed-A / Sun-B; upper = Push A Mon, Pull A Tue, Push B Thu, Pull B Sat. This week swaps A→Sun, B→Wed. <strong>Full protocols — every exercise, sets×reps, rest — are in the new Strength tab.</strong></p>
           </div>
 
         </div>
@@ -2339,6 +2351,115 @@
           <div class="note">Revised from 198 (8 Jun). The all-out 3k TT topped 178 with <em>flat HR through a 3:32/km finish</em> — no cardiac reserve, so true max ≈ 183–185. Easy runs at 125–140 also read as textbook 68–76% of 184. <em>Provisional — confirm via TT RPE + the Jun 27 10k max.</em></div>
         </aside>
       </div>
+    </div>
+  </div>
+
+  <!-- PANEL: STRENGTH -->
+  <div class="panel" data-panel="strength">
+    <div class="wrap">
+      <div class="panel-head">
+        <h1>Strength · <em>2 lower + 4 upper</em> / week</h1>
+        <div class="meta">Canonical schedule: lower = Wed (A) + Sun (B) · upper = Push A Mon · Pull A Tue · Push B Thu · Pull B Sat. Never heavy lower on Mon (shadows Tue quality).<br><strong>This week (two quality days) swaps the lower pair: Session A → Sun, Session B → Wed.</strong> Leave 2 reps in the tank on every set; skip Session A for B-style light work if hamstring ≥ 3/10.</div>
+      </div>
+
+      <!-- LOWER A -->
+      <div class="str-sec lower first">
+        <div class="lbl">Lower · Session A · heavy</div>
+        <h2>Posterior chain</h2>
+        <div class="when">Default Wed PM · THIS WEEK Sun PM · ~45 min · the hamstring-tendon work</div>
+      </div>
+      <table class="zones-table">
+        <thead><tr><th>Exercise</th><th>Sets × reps</th><th>Rest</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="exn">Single-leg hamstring bridge<small>4-sec descent</small></td><td class="data">3 × 8 each</td><td class="data">2 min</td><td class="purpose">Eccentric — replaces bilateral Nordic. Log clean reps L vs R.</td></tr>
+          <tr><td class="exn">Single-leg RDL</td><td class="data">3 × 8 each</td><td class="data">2 min</td><td class="purpose">Set load by LEFT capacity, match both. Log asymmetry.</td></tr>
+          <tr><td class="exn">Hip thrust<small>3-sec descent</small></td><td class="data">3 × 10</td><td class="data">2 min</td><td class="purpose">Glute max · barbell or heavy DB.</td></tr>
+          <tr><td class="exn">Bulgarian split squat</td><td class="data">3 × 8 each</td><td class="data">2 min</td><td class="purpose">Unilateral leg strength · DB.</td></tr>
+          <tr><td class="exn">Copenhagen plank</td><td class="data">3 × 20–30s each</td><td class="data">1 min</td><td class="purpose">Adductor — protects against hamstring overload.</td></tr>
+          <tr><td class="exn">Pallof press</td><td class="data">2 × 10 each</td><td class="data">1 min</td><td class="purpose">Anti-rotation core · cable or band.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- LOWER B -->
+      <div class="str-sec lower">
+        <div class="lbl">Lower · Session B · power / maintenance</div>
+        <h2>Power &amp; maintenance</h2>
+        <div class="when">Default Sun PM · THIS WEEK Wed PM · ~45 min · stiffness, glute med, runner gaps</div>
+      </div>
+      <table class="zones-table">
+        <thead><tr><th>Exercise</th><th>Sets × reps</th><th>Rest</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="exn">Pogo jump</td><td class="data">3 × 30s</td><td class="data">90s</td><td class="purpose">Ankle stiffness · short ground contact.</td></tr>
+          <tr><td class="exn">Lateral bound</td><td class="data">3 × 6 each</td><td class="data">90s</td><td class="purpose">Single-leg frontal-plane power.</td></tr>
+          <tr><td class="exn">Single-leg calf raise</td><td class="data">3 × 12 each</td><td class="data">90s</td><td class="purpose">Soleus + gastroc · progress to DB.</td></tr>
+          <tr><td class="exn">Step-up to high knee</td><td class="data">3 × 8 each</td><td class="data">2 min</td><td class="purpose">Hip-flexor power + single-leg drive · DB.</td></tr>
+          <tr><td class="exn">Side plank w/ hip abduction</td><td class="data">3 × 8 each</td><td class="data">1 min</td><td class="purpose">Glute med isolation.</td></tr>
+          <tr><td class="exn">Dead bug</td><td class="data">2 × 10</td><td class="data">1 min</td><td class="purpose">Lumbo-pelvic control.</td></tr>
+          <tr><td class="exn">Reverse hyper / back ext.</td><td class="data">3 × 12</td><td class="data">1 min</td><td class="purpose">Posterior chain + spinal extensors.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- UPPER PUSH A -->
+      <div class="str-sec upper">
+        <div class="lbl">Upper · Push A · Mon PM</div>
+        <h2>Chest &amp; triceps</h2>
+        <div class="when">~20 min · RIR 2 · add reps before load</div>
+      </div>
+      <table class="zones-table">
+        <thead><tr><th>Exercise</th><th>Sets × reps</th><th>Rest</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="exn">DB bench press<small>floor press if no bench</small></td><td class="data">4 × 8–10</td><td class="data">~90s</td><td class="purpose">RIR 2.</td></tr>
+          <tr><td class="exn">Push-up</td><td class="data">3 × max-2</td><td class="data">~90s</td><td class="purpose">Feet elevated → weighted when easy.</td></tr>
+          <tr><td class="exn">DB overhead triceps ext.</td><td class="data">3 × 10–12</td><td class="data">~60s</td><td class="purpose">Both hands, one DB.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- UPPER PULL A -->
+      <div class="str-sec upper">
+        <div class="lbl">Upper · Pull A · Tue PM</div>
+        <h2>Lats &amp; biceps</h2>
+        <div class="when">~20 min · after Tue AM sub-T (10h gap, fine)</div>
+      </div>
+      <table class="zones-table">
+        <thead><tr><th>Exercise</th><th>Sets × reps</th><th>Rest</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="exn">Pull-up<small>chin-up while building</small></td><td class="data">4 × 5–8</td><td class="data">~90s</td><td class="purpose">RIR 2 · add reps before load.</td></tr>
+          <tr><td class="exn">DB one-arm row</td><td class="data">4 × 8–10 each</td><td class="data">~90s</td><td class="purpose">Pull elbow to hip.</td></tr>
+          <tr><td class="exn">DB hammer curl</td><td class="data">3 × 10–12</td><td class="data">~60s</td><td class="purpose">Neutral grip.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- UPPER PUSH B -->
+      <div class="str-sec upper">
+        <div class="lbl">Upper · Push B · Thu PM</div>
+        <h2>Shoulders</h2>
+        <div class="when">~20 min · brace core, don't arch</div>
+      </div>
+      <table class="zones-table">
+        <thead><tr><th>Exercise</th><th>Sets × reps</th><th>Rest</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="exn">DB overhead press<small>seated or standing</small></td><td class="data">4 × 8–10</td><td class="data">~90s</td><td class="purpose">RIR 2.</td></tr>
+          <tr><td class="exn">DB lateral raise</td><td class="data">3 × 12–15</td><td class="data">~60s</td><td class="purpose">Light, slight pinky-up.</td></tr>
+          <tr><td class="exn">DB rear delt fly</td><td class="data">3 × 12–15</td><td class="data">~60s</td><td class="purpose">Posture insurance for arm swing.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- UPPER PULL B -->
+      <div class="str-sec upper">
+        <div class="lbl">Upper · Pull B · Sat PM</div>
+        <h2>Back thickness &amp; biceps</h2>
+        <div class="when">~20 min · ≥ 4h post-LR</div>
+      </div>
+      <table class="zones-table">
+        <thead><tr><th>Exercise</th><th>Sets × reps</th><th>Rest</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="exn">Pull-up<small>wide grip</small></td><td class="data">3 × 5–8</td><td class="data">~90s</td><td class="purpose">Different grip from Tue.</td></tr>
+          <tr><td class="exn">DB renegade row</td><td class="data">3 × 8–10 each</td><td class="data">~90s</td><td class="purpose">Plank position · anti-rotation bonus.</td></tr>
+          <tr><td class="exn">DB curl<small>3-sec eccentric</small></td><td class="data">3 × 10–12</td><td class="data">~60s</td><td class="purpose">Slow lower drives growth.</td></tr>
+        </tbody>
+      </table>
+
+      <p class="str-note">Progression: add reps before load — hit the top of the range at RIR 2 for two sessions, then bump load and rebuild from the bottom. Unload week every 4–6 weeks (drop one set across the board). Drop strength volume 30% in the two weeks before a race. Source of truth: <code>notes/strength_program.md</code>.</p>
     </div>
   </div>
 
